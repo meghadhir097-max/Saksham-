@@ -2,25 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine Quiz</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Valentine Quiz</h1>
-    <form>
-        <label for="name">What's your name?</label>
-        <input type="text" id="name" name="name">
-        <br>
-        <label>What do you like to do on Valentine's Day?</label><br>
-        <input type="radio" id="dine" name="activity" value="Dine">
-        <label for="dine">Dine out</label><br>
-        <input type="radio" id="movies" name="activity" value="Movies">
-        <label for="movies">Watch movies</label><br>
-        <input type="radio" id="gifts" name="activity" value="Gifts">
-        <label for="gifts">Give/Receive gifts</label><br>
-        <input type="radio" id="none" name="activity" value="None">
-        <label for="none">None</label><br>
-        <button type="submit">Submit</button>
-    </form>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="startQuiz()">Start Quiz</button>
+
+    <div id="quiz" class="hidden">
+        <h2>Questions</h2>
+        <form id="quizForm">
+            <label>1. Aap kahan mile the?</label><br>
+            <input type="text" required><br><br>
+
+            <label>2. Aapki favourite chocolate kaunsi hai?</label><br>
+            <input type="text" required><br><br>
+
+            <label>3. Aapka mood aaj kaisa hai?</label><br>
+            <input type="text" required><br><br>
+
+            <label>4. Aapka special date kya hai?</label><br>
+            <input type="date" required><br><br>
+
+            <label>5. Aap kitna pyaar express karte hain?</label><br>
+            <input type="text" required><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="congratulations" class="hidden">
+            <h2>Congratulations! Aapne quiz complete kar liya!</h2>
+        </div>
+    </div>
+
+    <script>
+        function startQuiz() {
+            const password = document.getElementById("password").value;
+            if (password === "megha") {
+                document.getElementById("quiz").classList.remove("hidden");
+                document.querySelector("input[type='password']").classList.add("hidden");
+                document.querySelector("button").classList.add("hidden");
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+
+        document.getElementById("quizForm").onsubmit = function(event) {
+            event.preventDefault();
+            const quiz = document.getElementById("quiz");
+            const congratulations = document.getElementById("congratulations");
+            quiz.classList.add("hidden");
+            congratulations.classList.remove("hidden");
+        };
+    </script>
+
 </body>
 </html>
